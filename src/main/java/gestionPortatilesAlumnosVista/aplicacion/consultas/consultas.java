@@ -7,7 +7,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import gestionPortatilesAlumnosVista.aplicacion.dal.alumno;
+import gestionPortatilesAlumnosVista.aplicacion.dal.Alumno;
 import gestionPortatilesAlumnosVista.aplicacion.dal.alumnoImpl;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatil;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatilImpl;
@@ -23,12 +23,12 @@ public class consultas {
 	private portatilImpl por;
 	
 	@Transactional
-	public void insertarUnAlumno(alumno matricula) {
+	public void insertarUnAlumno(Alumno matricula) {
 		al.insertarMatriculaAlumno(matricula);
 	}
 	
 	@Transactional
-	public void borrarUnaMatriculaAlumno(alumno matricula) {
+	public void borrarUnaMatriculaAlumno(Alumno matricula) {
 		al.borrarMatriculaAlumno(matricula);
 	}
 	

@@ -13,7 +13,7 @@ public class alumnoImpl implements alumnoServicio  {
 
 
 	@Override
-	public void insertarMatriculaAlumno(alumno matricula) {
+	public void insertarMatriculaAlumno(Alumno matricula) {
 		// TODO Auto-generated method stub
 		em.persist(matricula);
 		
@@ -21,7 +21,7 @@ public class alumnoImpl implements alumnoServicio  {
 
 
 	@Override
-	public void borrarMatriculaAlumno(alumno matricula) {
+	public void borrarMatriculaAlumno(Alumno matricula) {
 		// TODO Auto-generated method stub
 		em.remove(matricula);
 	}

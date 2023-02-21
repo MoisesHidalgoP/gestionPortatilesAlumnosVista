@@ -2,18 +2,21 @@ package gestionPortatilesAlumnosVista.aplicacion.dal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name="alumno", schema="dlk_gestion")
-public class alumno {
+public class Alumno {
 	
 	//Atributos
 	
 		@Id
+		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="codAlumno", unique=true,nullable=false)
 		private int codAlumno;
 		@Column(name="md_uuid")
