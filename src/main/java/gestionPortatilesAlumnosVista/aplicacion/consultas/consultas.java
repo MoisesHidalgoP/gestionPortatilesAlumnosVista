@@ -5,41 +5,51 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import gestionPortatilesAlumnosVista.aplicacion.dal.Alumno;
-import gestionPortatilesAlumnosVista.aplicacion.dal.alumnoImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dal.alumnoServicio;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatil;
-import gestionPortatilesAlumnosVista.aplicacion.dal.portatilImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dal.portatilServicio;
 
 
 
-@Repository
+@Service
 public class consultas {
 	
 	@Autowired
-	private alumnoImpl al;
+	private portatilServicio portatilServicio;
 	@Autowired
-	private portatilImpl por;
+	private alumnoServicio alumnoSer;
 	
 	@Transactional
-	public void insertarUnAlumno(Alumno matricula) {
-		al.insertarMatriculaAlumno(matricula);
+	public void insertarUnPortatil(portatil portatil) {
+		portatilServicio.save(portatil);
+		
 	}
 	
-	@Transactional
-	public void borrarUnaMatriculaAlumno(Alumno matricula) {
-		al.borrarMatriculaAlumno(matricula);
+	@Transactional 
+	public void insertarUnAlumno(Alumno alumno,portatil portatil) {
+		alumnoSer.save(alumno);
+		
 	}
-	
-	@Transactional
-	public void insertarUnPortatil(portatil alta) {
-		por.insertarAltaPortatil(alta);
-	}
-	
 	@Transactional
 	public List<portatil>listPortatil(){
-		return por.buscaPortatil();
+		return (List<portatil>) portatilServicio.findAll();
+	}
+	@Transactional
+	public void borrarAlumno(int codAlumno){
+		alumnoSer.deleteById(codAlumno);
+	}
+	@Transactional
+	public List<Alumno>buscarTodos(){
+		return (List<Alumno>) alumnoSer.findAll();
+		 
+	}
+	
+	@Transactional
+	public List<portatil>portatilAsigAlumno(int codAlumno){
+		return (List<portatil>) portatilServicio.findAll();
 	}
 	
 	

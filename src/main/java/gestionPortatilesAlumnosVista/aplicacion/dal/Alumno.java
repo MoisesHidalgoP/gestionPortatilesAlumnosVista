@@ -29,7 +29,6 @@ public class Alumno {
 		portatil portatil;
 		
 		//Getters y Setters
-		
 		public int getCodAlumno() {
 			return codAlumno;
 		}
@@ -70,14 +69,26 @@ public class Alumno {
 			this.portatil = portatil;
 		}
 		
+		//COnstructores
+		public Alumno() {
+			super();
+		}
 		
+		public Alumno(String md_uuid, String nombre, String telefono,
+				gestionPortatilesAlumnosVista.aplicacion.dal.portatil portatil) {
+			super();
+			this.md_uuid = md_uuid;
+			this.nombre = nombre;
+			this.telefono = telefono;
+			this.portatil = portatil;
+		}
 		
 		//toString
 		
 		@Override
 		public String toString() {
-			return "alumno [codAlumno=" + codAlumno + ", md_uuid=" + md_uuid + ", nombre=" + nombre + ", telefono="
-					+ telefono + "]";
+			return "Alumno: " + nombre + " Codigo del Alumno: " + codAlumno + " Mduui: " + md_uuid + " Telefono: "
+					+ telefono ;
 		}
 
 		

@@ -1,15 +1,17 @@
 package gestionPortatilesAlumnosVista.aplicacion.dal;
 
-import java.util.List;
 
 
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface portatilServicio {
+@Repository
+public interface portatilServicio extends CrudRepository<portatil, Integer> {
+
 	
-	    //Signatura del metodo que da de alta un portatil
-		public void insertarAltaPortatil (portatil alta);
-		//Signatura del metodo que busca los portatiles
-		public List<portatil> buscaPortatil();
+	
+	
+	    
 
 
 }

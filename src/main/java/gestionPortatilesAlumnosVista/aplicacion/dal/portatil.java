@@ -2,6 +2,8 @@ package gestionPortatilesAlumnosVista.aplicacion.dal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,6 +13,7 @@ public class portatil {
 	
 	//Atributos
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="idPortail" , unique=true, nullable=false)
 	private int idPortatil;
 	@Column(name="md_uuid")
@@ -19,7 +22,6 @@ public class portatil {
 	private String marca;
 	@Column(name="modelo")
 	private String modelo;
-	
 	
 	//Getters y Setters
 	public int getIdPortatil() {
@@ -46,14 +48,29 @@ public class portatil {
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
 	}
+
 	
+	
+	public portatil(Integer idPortatil, String marca, String modelo) {
+		this.idPortatil = idPortatil;
+		this.marca = marca;
+		this.modelo = modelo;
+	}
+	//Constructores
+	public portatil() {}
+	
+	public portatil(String marca, String modelo) {
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+	}
 	
 	
 	//toString
 	@Override
 	public String toString() {
-		return "portatil [idPortatil=" + idPortatil + ", md_uuid=" + md_uuid + ", marca=" + marca + ", modelo=" + modelo
-				+ "]";
+		return " Portatil idPortatil: " + idPortatil + " Mduuid: " + md_uuid + " Marca: " + marca + " Modelo: " + modelo
+				;
 	}
 
 }

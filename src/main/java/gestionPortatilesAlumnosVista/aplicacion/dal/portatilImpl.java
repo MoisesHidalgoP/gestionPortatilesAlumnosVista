@@ -5,18 +5,22 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
 
+
 @Repository
-public class portatilImpl implements portatilServicio{
+public class portatilImpl {
 
 	@PersistenceContext
 	private EntityManager em;
+	@Autowired
+	private portatilServicio portatilServicio;
 
 
-	@Override
+	/*@Override
 	public void insertarAltaPortatil(portatil alta) {
 		// TODO Auto-generated method stub
 		em.persist(alta);
@@ -33,6 +37,6 @@ public class portatilImpl implements portatilServicio{
 		}
 		return null;
 		
-	}
+	}*/
 
 }
