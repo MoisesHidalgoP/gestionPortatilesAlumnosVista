@@ -15,12 +15,23 @@
 
 <body>
 
-<form action="portatilDelAlumno" method="POST">
-  <label for="codAlumno">Código del Alumno:</label>
-  <input type="number" id="codAlumno" name="codAlumno">
-  <br>
-  <input type=submit  value="Buscar">
-</form>
+<form:form method="POST" 
+          action="portatilDelAlumno" modelAttribute="alumnosGM">
+             <table>
+                
+                
+                <tr>
+                    <td><form:label path="codAlumno">Codigo del Alumno</form:label></td>
+                    <td><form:input path="codAlumno"/></td>
+                </tr>
+                
+                
+               
+                <tr>
+                    <td><input type="submit" value="Buscar"/></td>
+                </tr>
+            </table>
+        </form:form>
 
 
 

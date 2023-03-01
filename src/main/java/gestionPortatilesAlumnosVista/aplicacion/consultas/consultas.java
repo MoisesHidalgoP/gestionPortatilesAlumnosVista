@@ -22,34 +22,77 @@ public class consultas {
 	@Autowired
 	private alumnoServicio alumnoSer;
 	
+	//Consulta que inserta un portatil a Base de Datos
 	@Transactional
 	public void insertarUnPortatil(portatil portatil) {
 		portatilServicio.save(portatil);
 		
 	}
 	
+	//Consulta que inserta un alumno a Base de Datos
 	@Transactional 
-	public void insertarUnAlumno(Alumno alumno,portatil portatil) {
-		alumnoSer.save(alumno);
+	public void insertarUnAlumno(Alumno alumno) {
+		try {
+			alumnoSer.save(alumno);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		
 	}
+	//Conulta que devuelve una lista de portatiles
 	@Transactional
 	public List<portatil>listPortatil(){
-		return (List<portatil>) portatilServicio.findAll();
+		
+		try {
+			return (List<portatil>) portatilServicio.findAll();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
 	}
+	//Consulta que borra un alumno por su id(codAlumno en mi caso)
 	@Transactional
 	public void borrarAlumno(int codAlumno){
-		alumnoSer.deleteById(codAlumno);
+		try {
+			alumnoSer.deleteById(codAlumno);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	
 	}
+	//Consulta que devuelve una lista de alumnos
 	@Transactional
 	public List<Alumno>buscarTodos(){
-		return (List<Alumno>) alumnoSer.findAll();
+		try {
+			 List<Alumno>listAlumno = (List<Alumno>) alumnoSer.findAll();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+		
 		 
 	}
 	
 	@Transactional
-	public List<portatil>portatilAsigAlumno(int codAlumno){
-		return (List<portatil>) portatilServicio.findAll();
+	public portatil portatilAsigAlumno(int codAlumno){
+		try {
+			Alumno alumno = alumnoSer.findById(codAlumno).get();
+			portatil portatil = alumno.getPortatil();
+			
+			return portatil;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
 	}
 	
 	

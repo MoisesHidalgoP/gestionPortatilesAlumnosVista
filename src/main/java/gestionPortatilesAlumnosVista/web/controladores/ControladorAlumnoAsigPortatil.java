@@ -10,6 +10,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -44,15 +45,16 @@ public class ControladorAlumnoAsigPortatil {
 	    } 
 	    
 	    @PostMapping(value="/portatilDelAlumno" )
-	    public ModelAndView portatilDelAlumno(@RequestParam int codAlumno,Model model)
+	    public ModelAndView portatilDelAlumno(@ModelAttribute("alumnosGM") Alumno alumno,Model model)
 	    		{
+	    	portatil portatil = new portatil();
+	    	portatil = consulta.portatilAsigAlumno(alumno.getCodAlumno());
 	    	
-	    	List<portatil> portatil = consulta.portatilAsigAlumno(codAlumno);
-	        model.addAttribute("portatil", portatil);
-	        miModelo.put("resultados", portatil);
+	    	model.addAttribute("portatil",portatil);
+	       
 	        
 	        
-	    	return new ModelAndView ("resultado","miModelo",miModelo);
+	    	return new ModelAndView ("resultado");
 	    }
 	    
 

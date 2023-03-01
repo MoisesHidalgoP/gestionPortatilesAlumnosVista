@@ -12,10 +12,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:forEach items="${miModelo.resultados}" var="resultados"> 
-	<c:out value="${resultados}"/>
-	<br/>
-</c:forEach>
+    <p>Id: ${portatil.idPortatil}</p>
+    <p>Marca: ${portatil.marca}</p>
+    <p>Modelo: ${portatil.modelo}</p>
+ <button onclick="history.back()">Volver</button>
 
 </body>
 </html>

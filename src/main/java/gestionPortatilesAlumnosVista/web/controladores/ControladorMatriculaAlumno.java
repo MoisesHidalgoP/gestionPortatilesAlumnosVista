@@ -14,12 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import gestionPortatilesAlumnosVista.aplicacion.consultas.consultas;
 import gestionPortatilesAlumnosVista.aplicacion.dal.Alumno;
 import gestionPortatilesAlumnosVista.aplicacion.dal.alumnoServicio;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatil;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatilServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADaoServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADaoServicioImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADtoServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADtoServicioImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dto.alumnoDTO;
 
 @Controller
 public class ControladorMatriculaAlumno {
@@ -28,6 +32,14 @@ public class ControladorMatriculaAlumno {
 	 consultas consulta=new consultas();
 	@Autowired
 	private portatilServicio portatilServicio;
+	
+	  ADtoServicio aDto = new ADtoServicioImpl();
+	  ADaoServicio aDao = new ADaoServicioImpl();
+	 
+
+	  //DTO para alumno
+	  alumnoDTO dtoAlumno;
+	  Alumno Alumno;
 	
 	
 	 protected final Log logger = LogFactory.getLog(getClass());
@@ -52,13 +64,16 @@ public class ControladorMatriculaAlumno {
 	   		 @RequestParam String modelo)
 	    		{
 	    	
-	    	
-	    	portatil portatil1 = new portatil(idPortatil,marca,modelo);
+            portatil portatil1 = new portatil(idPortatil,marca,modelo);
 	    	
 	        Alumno alumno1 = new Alumno(md_uuid,nombre,telefono,portatil1);
-	       
-	       
-	        consulta.insertarUnAlumno(alumno1,portatil1);
+	        consulta.insertarUnAlumno(alumno1);
+	    	
+	    	 //dtoAlumno = aDto.aAlumnoDTONormal(alumno1);
+			 //Alumno = aDao.alumnoDTOADAO(dtoAlumno);
+	    	//portatil portatil1 = new portatil(idPortatil,marca,modelo);
+	        //Alumno alumno1 = new Alumno(md_uuid,nombre,telefono,portatil1);
+	        //consulta.insertarUnAlumno(alumno1,portatil1);
 	        
 	    	return new ModelAndView("menu", "miModelo", miModelo);
 	    }

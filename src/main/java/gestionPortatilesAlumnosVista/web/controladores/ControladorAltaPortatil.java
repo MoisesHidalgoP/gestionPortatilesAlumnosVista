@@ -15,11 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import gestionPortatilesAlumnosVista.aplicacion.consultas.consultas;
 import gestionPortatilesAlumnosVista.aplicacion.dal.Alumno;
 import gestionPortatilesAlumnosVista.aplicacion.dal.alumnoServicio;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatil;
 import gestionPortatilesAlumnosVista.aplicacion.dal.portatilServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADaoServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADaoServicioImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADtoServicio;
+import gestionPortatilesAlumnosVista.aplicacion.dto.ADtoServicioImpl;
+import gestionPortatilesAlumnosVista.aplicacion.dto.portatilDTO;
 
 @Controller
 public class ControladorAltaPortatil {
@@ -27,6 +33,12 @@ public class ControladorAltaPortatil {
 	
 	@Autowired
 	 consultas consulta=new consultas();
+	 ADtoServicio aDto = new ADtoServicioImpl();
+	 ADaoServicio aDao = new ADaoServicioImpl();
+	 
+	 //DTO para portatil
+	  portatilDTO dtoPortatil;
+	  portatil Portatil;
 	
 	
 	
@@ -50,8 +62,11 @@ public class ControladorAltaPortatil {
     	portatiles.add(portatil);
         //miModelo.put("listaPortatiles", portatilVista);
     	
+    	  dtoPortatil = aDto.aPortatilDTONormal(portatil.getMd_uuid(),portatil.getMarca(),portatil.getModelo());
+		  Portatil = aDao.portatilDTOADAO(dtoPortatil);
+		  consulta.insertarUnPortatil(Portatil);
         
-       consulta.insertarUnPortatil(portatil);
+      
     	
         
     	return new ModelAndView("menu", "miModelo", miModelo);
